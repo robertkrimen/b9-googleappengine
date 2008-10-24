@@ -18,6 +18,11 @@ def pluralize(count, singular, plural):
     else:
         return plural
 
+def percentage(numerator = 0, denominator = 0):
+    if denominator == 0:
+        return None
+    return "%.0f" % ((float(numerator) / float(denominator)) * 100)
+
 def minute_second_millisecond(millisecond_time):
     millisecond = int( millisecond_time % 1000 )
     second = int( millisecond_time / 1000 ) % 60
