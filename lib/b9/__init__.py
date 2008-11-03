@@ -1,10 +1,16 @@
-def extract(dict_, *names):
+def extract(source, *names):
     result = None
     for name in names:
-        value = dict_.pop( name, None )
+        value = source.pop( name, None )
         if result is None and value is not None:
             result = value
     return result
+
+def seek(source, *names):
+    for name in names:
+        if name in source:
+            return source[name]
+    return None
 
 def empty(value):
     return not(bool(value) or value is 0)
@@ -21,7 +27,12 @@ def pluralize(count, singular, plural):
 def percentage(numerator = 0, denominator = 0):
     if denominator == 0:
         return None
-    return "%.0f" % ((float(numerator) / float(denominator)) * 100)
+    return ( float( numerator ) / float( denominator ) ) * 100
+
+def average(numerator = 0, denominator = 0):
+    if denominator == 0:
+        return None
+    return float(numerator) / float(denominator)
 
 def minute_second_millisecond(millisecond_time):
     millisecond = int( millisecond_time % 1000 )
