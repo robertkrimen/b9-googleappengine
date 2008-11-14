@@ -78,7 +78,10 @@ class Parser:
         else:
             value = self._get(key, self._source, none, empty)
         if value is not None and into is not None:
-            return into(value)
+            if into == basestring:
+                return str(value)
+            else:
+                return into(value)
         else:
             return value
 
@@ -90,7 +93,10 @@ class Parser:
         else:
             value = self.fetch(key, none, empty)
         if value is not None and into is not None:
-            value = into(value)
+            if into == basestring:
+                value = str(value)
+            else:
+                value = into(value)
         self._store[key] = value
         return value
 
